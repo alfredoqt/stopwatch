@@ -2,6 +2,8 @@ import {createUseStyles} from 'react-jss';
 import Timer from 'components/Timer';
 import TimerActions from 'components/TimerActions';
 import Laps from 'components/Laps';
+import store from 'store';
+import {StoreContext} from 'redux-react-hook';
 
 const useStyles = createUseStyles({
   root: {
@@ -20,12 +22,14 @@ function App() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <h1 className={classes.title}>Stopwatch</h1>
-      <Timer />
-      <TimerActions />
-      <Laps />
-    </div>
+    <StoreContext.Provider value={store}>
+      <div className={classes.root}>
+        <h1 className={classes.title}>Stopwatch</h1>
+        <Timer />
+        <TimerActions />
+        <Laps />
+      </div>
+    </StoreContext.Provider>
   );
 }
 
